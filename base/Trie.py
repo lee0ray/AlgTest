@@ -48,8 +48,6 @@ if __name__ == '__main__':
 
     t = Trie()
 
-    t.insert("abc")
-    t.insert("apple")
     t.insert("app")
 
     print(t.search("a"))
