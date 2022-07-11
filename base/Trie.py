@@ -43,14 +43,42 @@ class Trie:
     def startsWith(self, word):
         return self.searchPrefix(word) is not None
 
+class TrieH:
+    def __init__(self):
+        self.isEnd = False
+        self.Next = {}
+
+    def insert(self, word):
+        node = self
+        for ch in word:
+            if ch not in node.Next:
+                node.Next[ch] = TrieH()
+            node = node.Next[ch]
+        node.isEnd = True
+
+    def searchPrefix(self, word):
+        node = self
+        for ch in word:
+            if ch not in node.Next:
+                return None
+            node = node.Next[ch]
+        return node
+
+    def search(self, word):
+        node = self.searchPrefix(word)
+        return node is not None and node.isEnd
+
+    def startsWith(self, word):
+        return self.searchPrefix(word) is not None
+
 
 if __name__ == '__main__':
 
-    t = Trie()
+    t = TrieH()
 
     t.insert("app")
 
     print(t.search("a"))
     print(t.search("apple"))
-    print(t.startsWith("app"))
-    print(t.startsWith("b"))
+    print(t.search("app"))
+    print(t.startsWith("ap"))
