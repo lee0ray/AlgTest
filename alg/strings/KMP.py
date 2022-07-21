@@ -19,7 +19,7 @@ class KMP:
         m = len(pat)
         self.dp = [[0] * 256 for _ in range(m)]
 
-        # base case
+        # alg case
         self.dp[0][ord(pat[0])] = 1
         x = 0
         for j in range(1, m):
